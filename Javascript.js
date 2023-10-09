@@ -741,6 +741,67 @@ const dataPromise = getData();
 dataPromise.then((res) => console.log(res)); */ // Output : Hello promise value
 
 //* Async and await are used to handle the promises
+//* Await is a keyword that can only be used inside an async function
+
+/* const p1 = new Promise((resolve, reject) => {
+  resolve("Hello promise value");
+});
+
+async function handlePromise() {
+  const val = await p1;
+  console.log(val);
+}
+
+handlePromise(); */ // Output : Hello promise value
+
+//* Older way to write promise
+
+/* const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Hello promise value");
+  }, 10000)
+});
+
+function handlePromise() {
+  p1.then((res) => console.log(res)); // Over here JS engine will not wait for promise to be resolved it will just move on to the next line print the hello older 
+  console.log("hello older");
+}
+
+handlePromise(); */ // hello older "after 10 sec "  Hello promise value
+
+//* New way to write Promise handling using async and await
+
+/* async function handlePromise() {
+  const val = await p1; // Here JS Engine was waiting for promise to be resolved once the promise is resolved then only it will go to the next line.
+  console.log("hello new");
+  console.log(val);
+}
+
+handlePromise(); */ // Output : After 10 secs -- hello new , Hello promise value
+
+//* Error Handling the promise
+
+const API_URl = "https://invalidapi.com";
+
+async function handlePromise() {
+  try {
+    const data = await API_URl;
+    const jsonValue = await data.JSON();
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+handlePromise();
+handlePromise().catch((err) => console.log(err))
+
+//* Interview 
+
+//* async is a keyword which is used with function. The function with async keyword always returns the promise. await is used inside the function to handle the promises. async and await basically use to handle the promises it is a modern way to write the promises.
+
+//* promise vs async and await
+
+//* Async and await is a syntactical sugar over promise native methods behind the scenes javascript uses the normal promise things 
 
 // TODO Cors, preflight request , Options method  Access Control Allow Origin Error
 
